@@ -40,10 +40,26 @@
 # H A N G M A N
 # Guess the word: > kotlin
 # You lost!
+import random
 
 class Hangman:
     def __init__(self):
         ...
 
     def title(self):
-        print()
+        print("H A N G M A N")
+
+    def play(self):
+        words = ['python', 'java', 'kotlin', 'javascript']
+        guess = random.choice(words)
+        print("You survived!" if input("Guess the word: ") == guess else "You lost!")
+
+
+def main():
+    game = Hangman()
+    game.title()
+    game.play()
+
+
+if __name__ == '__main__':
+    main()
