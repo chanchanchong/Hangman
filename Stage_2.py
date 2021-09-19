@@ -25,17 +25,20 @@
 
 class Hangman:
     def __init__(self):
-        ...
-    def title(self):
-        print("H A N G M A N")
+        self.welcome_message = "H A N G M A N"
+        self.winning_message = "You survived!"
+        self.losing_message = "You lost!"
 
-    def play(self):
-        print("You survived!" if input("Guess the word: ") == "python" else "You lost!")
+    def start(self):
+        print(self.welcome_message)
+        self.result()
+
+    def result(self):
+        print(self.winning_message if input("Guess the word: ") == "python" else self.losing_message)
 
 def main():
     game = Hangman()
-    game.title()
-    game.play()
+    game.start()
 
 if __name__ == '__main__':
     main()

@@ -40,19 +40,23 @@
 # H A N G M A N
 # Guess the word: > kotlin
 # You lost!
-import random
+
+from random import choice
+
 
 class Hangman:
     def __init__(self):
-        ...
+        self.words = ['python', 'java', 'kotlin', 'javascript']
+        self.guess = choice(self.words)
+        self.welcome_message = " H A N G M A N"
+        self.winning_message = "You survived!"
+        self.losing_message = "You lost!"
 
-    def title(self):
-        print("H A N G M A N")
+    def start(self):
+        print(self.welcome_message)
 
-    def play(self):
-        words = ['python', 'java', 'kotlin', 'javascript']
-        guess = random.choice(words)
-        print("You survived!" if input("Guess the word: ") == guess else "You lost!")
+    def result(self):
+        print(self.winning_message if input("Guess the word: ") == guess else self.losing_message)
 
 
 def main():

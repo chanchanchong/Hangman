@@ -106,38 +106,54 @@
 # Thanks for playing!
 # We'll see how well you did in the next stage
 
-import random
+from random import choice
 
 
 class Hangman:
     def __init__(self):
         self.words = ['python', 'java', 'kotlin', 'javascript']
+        self.guess_word = choice(self.words)
+        self.guess_temp = list('-' * len(self.guess_word))
+        self.welcome_message = "H A N G M A N"
+        self.winning_message = "You survived!"
+        self.losing_message = "You lost!"
+        self.not_in_letter_warning = ""
+        self.input_message = "Input a letter: "
         self.tries = 8
-        print("H A N G M A N")
+        self.answer = None
+        self.final_message = "\nThanks for playing!\nWe'll see how well you did in the next stage"
 
-    def play(self):
-        guess_word = random.choice(self.words)
-        guess_temp = list('-' * len(guess_word))
+    def start(self):
+        print(self.welcome_message)
+        self.game()
+
+    def game(self):
         while self.tries != 0:
-            print()
-            print(str(''.join(guess_temp)))
-            guess = input("Input a letter: ")
-            if guess in guess_word:
-                for x in range(len(guess_word)):
-                    if guess == guess_word[x]:
-                        guess_temp[x] = guess
-            else:
-                print("That letter doesn't appear in the word")
-            self.tries -= 1
+            self.ask_input()
+            self.check_input()
+        self.result()
+
+    def ask_input(self):
+        print(''.join(self.guess_temp))
+        self.answer = input(self.input_message)
+
+    def check_input(self):
+        if self.answer in self.guess_word:
+            for x in range(len(self.guess_word)):
+                if self.answer == self.guess_word[x]:
+                    self.guess_temp[x] = self.answer
         else:
-            print()
-            print("Thanks for playing!")
-            print("We'll see how well you did in the next stage")
+            print(self.not_in_letter_warning)
+        self.tries -= 1
+
+    def result(self):
+        # print(self.winning_message if self.answer == self.guess else self.losing_message)
+        print(self.final_message)
 
 
 def main():
     hangman = Hangman()
-    hangman.play()
+    hangman.game()
 
 
 if __name__ == '__main__':

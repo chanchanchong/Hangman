@@ -121,7 +121,32 @@
 from random import choice
 
 
+class Hangman:
+    def __init__(self):
+        self.words = ['python', 'java', 'kotlin', 'javascript']
+        self.guess_word = choice(self.words)
+        self.guess_temp= list(self.guess_word)
+        self.hint = ""
+        self.lives = 8
+        self.word_guessed = False
+        self.welcome_message = 'H A N G M A N'
+        self.victory_message = f'\n{self.guess_word}\nYou guessed the word!\nYou survived!'
+        self.defeat_message = "You are hanged!"
 
+    def start(self):
+        print(self.welcome_message)
+        self.game()
+
+    def game(self):
+        while self.lives != 0:
+            self.update_hint()
+        ...
+
+   def update_hint(self):
+       self.hint = self.chosen_word
+       for i in range(len(self.guess_word)):
+           if guess == guess_word[i]:
+                
 
 def main():
     game = Hangman()

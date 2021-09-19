@@ -49,7 +49,8 @@
 
 class Hangman:
     def __init__(self):
-        ...
+        self.welcome_message = "H A N G M A N"
+        self.message = "The game will be available soon."
     def title(self):
         print("H A N G M A N")
         print("The game will be available soon.")

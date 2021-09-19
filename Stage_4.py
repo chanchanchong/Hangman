@@ -29,25 +29,35 @@
 # Guess the word pyt---: > pythia
 # You lost!
 
-import random
+from random import choice
+
 
 class Hangman:
     def __init__(self):
         self.words = ['python', 'java', 'kotlin', 'javascript']
+        self.guess = choice(self.words)
+        self.welcome_message = "H A N G M A N"
+        self.winning_message = "You survived!"
+        self.losing_message = "You lost!"
 
-    def title(self):
-        print("H A N G M A N")
+    def start(self):
+        print(self.welcome_message)
+        self.game()
 
-    def play(self):
-        guess = random.choice(self.words)
-        answer = input("Guess the word " + guess[:3] + '-' * (len(guess) - 3) + ": ")
-        print("You survived!" if answer == guess else "You lost!")
+    def game(self):
+        self.ask_input()
+
+    def ask_input(self):
+        answer = input("Guess the word " + self.guess[:3] + '-' * (len(self.guess) - 3) + ": ")
+        self.result(answer)
+
+    def result(self, answer):
+        print(self.winning_message if answer == self.guess else self.losing_message)
 
 
 def main():
     game = Hangman()
-    game.title()
-    game.play()
+    game.start()
 
 
 if __name__ == '__main__':
